@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Landlords</h1>
+  <ul>
+    {% for landlord in landlords %}
+      <li>
+        <a href="{{ landlord.get_absolute_url }}">{{ landlord.name }}</a> - {{ landlord.phone_number }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

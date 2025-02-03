@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>HomeHunt</h1>
+
+  <p>Welcome to <em>HomeHunt</em>, a very basic Django website developed as a tutorial example on the Mozilla Developer Network.</p>
+
+<h2>Dynamic content</h2>
+
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+    {% endif %}
+
+  <p>HomeHunt has the following record counts:</p>
+  <ul>
+    <li><strong>Homes:</strong> {{ num_homes }}</li>
+    <li><strong>Landlords:</strong> {{ num_landlords }}</li>
+  </ul>
+
+{% endblock %}

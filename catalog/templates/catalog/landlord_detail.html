@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ landlord.name }}</h1>
+  <p><strong>Name:</strong> {{ landlord.name }}</p>
+  <p><strong>Phone:</strong> {{ landlord.phone_number }}</p>
+
+  <h2>Homes for Rent</h2>
+  {% if landlord.home_set.all %}
+    <ul>
+      {% for home in landlord.home_set.all %}
+        <li>
+          <a href="{{ home.get_absolute_url }}">{{ home.title }}</a> - {{ home.price }}$
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No homes available for rent.</p>
+  {% endif %}
+{% endblock %}

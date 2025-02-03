@@ -1,0 +1,34 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ home.title }}</h1>
+
+  <p><strong>Landlord:</strong>
+    <a href="{{ home.landlord.get_absolute_url }}">{{ home.landlord.name }}</a>
+    (Phone: {{ home.landlord.phone_number }})
+  </p>
+  <p><strong>Description:</strong> {{ home.description }}</p>
+  <p><strong>Price:</strong> {{ home.price }}</p>
+  <p><strong>Rooms:</strong> {{ home.quantity }}</p>
+  <p><strong>Views:</strong> {{ home.views_count }}</p>
+
+  <h3>Address:</h3>
+  <p>{{ home.city }}, {{ home.street }} {{ home.house_number }}{% if home.apartment_number %}, Apt {{ home.apartment_number }}{% endif %}</p>
+
+  <p><strong>Original Listing:</strong>
+    <a href="{{ home.original_address }}" target="_blank">View Source</a>
+  </p>
+
+  <h3>Images:</h3>
+  {% if home.images.all %}
+    <div class="row">
+      {% for image in home.images.all %}
+        <div class="col-md-4">
+          <img src="{{ image.image.url }}" class="img-fluid rounded" alt="Image of {{ home.title }}">
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No images available for this home.</p>
+  {% endif %}
+{% endblock %}
