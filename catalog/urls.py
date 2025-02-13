@@ -16,7 +16,10 @@ urlpatterns = [
     # Профиль
     path('register/', views.register, name='register'),
     path('profile/', profile_view, name='profile'),
-    path('profile/change-password/', CustomPasswordChangeView.as_view(), name='change_password')
+    path('profile/change-password/', CustomPasswordChangeView.as_view(), name='change_password'),
+
+    # Объявления
+    path('create-home/', views.create_home, name='home_form'),
 ]
 
 

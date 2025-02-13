@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'catalog.apps.CatalogConfig',
 
 ]
-
+AUTH_USER_MODEL = 'catalog.CustomUser'
 # Сохраняет любые изменения сессии при каждом запросе
 SESSION_SAVE_EVERY_REQUEST = True
 # После входа и выхода перенаправит пользователя на главную страницу

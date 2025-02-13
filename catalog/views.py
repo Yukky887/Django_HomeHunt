@@ -1,14 +1,15 @@
 
-from .models import Home, Landlord, QuantityRooms
+from .models import Home, Landlord, QuantityRooms, HomeImage
 from django.views import generic
 from django.contrib.auth import login
-from .forms import UserRegisterForm
+from .forms import HomeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
+from .forms import CustomUserCreationForm
 
 # Create your views here.
 
@@ -46,14 +47,40 @@ class CustomPasswordChangeView(PasswordChangeView):
 
 def register(request):
     if request.method == "POST":
-        form = UserRegisterForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)  # Автоматически логиним пользователя
             return redirect('index')  # Редирект на главную
     else:
-        form = UserRegisterForm()
+        form = CustomUserCreationForm()
     return render(request, 'catalog/register.html', {'form': form})
+
+@login_required
+def create_home(request):
+    if request.method == "POST":
+        form = HomeForm(request.POST, request.FILES)
+        files = request.FILES.getlist('images')
+        if form.is_valid():
+            home = form.save(commit=False)
+
+            landlord, created = Landlord.objects.get_or_create(
+                user=request.user,
+                defaults={
+                    "name": request.user.username,
+                    "phone_number": request.user.phone_number or "Не указан",
+                }
+            )
+
+            home.landlord = landlord
+            home.save()
+            for file in files:
+                HomeImage.objects.create(home=home, image=file)
+            return redirect("home-detail", pk=home.pk)
+    else:
+            form = HomeForm()
+    return render(request, 'catalog/home_form.html', {'form': form})
+
 
 class HomeListView(generic.ListView):
     model = Home
@@ -65,6 +92,10 @@ class HomeDetailView(generic.DetailView):
     model = Home
     template_name = 'catalog/home_detail.html'  # Укажите путь к вашему шаблону
     context_object_name = 'home'  # Опционально: имя переменной контекста
+
+    def home_detail(request, pk):
+        home = get_object_or_404(Home, pk=pk)
+        return render(request, 'catalog/home_detail.html', {'home': home})
 
     def get_object(self, queryset=None):
         home = super().get_object(queryset)

@@ -1,11 +1,22 @@
 from django.contrib import admin
 from .models import Home, QuantityRooms, Landlord
-
+from .models import CustomUser
+from django.contrib.auth.admin import UserAdmin
 # Register your models here.
 
 # admin.site.register(Home)
 # admin.site.register(QuantityRooms)
 # admin.site.register(Landlord)
+
+@admin.register(CustomUser)
+class CustomUserAdmin(UserAdmin):
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff')
+    fieldsets = UserAdmin.fieldsets + (
+        ('Additional Fields', {'fields': ('phone_number',)}),  # Добавьте дополнительные поля
+    )
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        ('Additional Fields', {'fields': ('email', 'phone_number',)}),
+    )
 
 @admin.register(Landlord)
 class LandlordAdmin(admin.ModelAdmin):

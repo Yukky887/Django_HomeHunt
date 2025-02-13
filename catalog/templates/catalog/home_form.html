@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Add New Home Listing</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+      <label for="id_images">Add images:</label>
+      <input type="file" name="images" id="id_images" multiple>
+
+    <button type="submit">Create</button>
+  </form>
+{% endblock %}
