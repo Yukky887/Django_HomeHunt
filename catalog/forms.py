@@ -41,8 +41,6 @@ class HomeForm(forms.ModelForm):
         def __init__(self, *args, user=None, **kwargs):
             super().__init__(*args, **kwargs)
 
-            if user and not user.is_staff:
-                self.fields.pop("original_address", None)
 
 class HomeImageForm(forms.ModelForm):
     class Meta:

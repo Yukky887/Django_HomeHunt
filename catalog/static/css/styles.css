@@ -1,5 +1,117 @@
-.sidebar-nav {
-  margin-top: 20px;
-  padding: 0;
-  list-style: none;
+/* Общие настройки */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* Легкий серый фон */
+}
+
+.container-fluid {
+    padding: 20px;
+}
+
+/* Сайдбар */
+.sidebar {
+    padding: 5px;
+    height: 100vh; /* Высота сайдбара равна высоте экрана */
+    overflow-y: auto; /* Добавляем скролл при необходимости */
+    border-right: 3px solid #ffffff; /* Легкая граница справа */
+}
+
+.sidebar ul {
+    list-style-type: none; /* Убираем маркеры списка */
+    padding: 0;
+}
+
+.sidebar .nav-item {
+    margin-bottom: 10px;
+}
+
+.sidebar .nav-link {
+    color: #005ac4; /* Темно-серый цвет текста */
+    text-decoration: none; /* Убираем подчеркивание ссылок */
+    font-weight: 900;
+    padding: 10px;
+    display: block;
+    border-radius: 5px; /* Закругленные углы */
+    transition: background-color 0.3s ease; /* Плавный переход фона */
+}
+
+.sidebar .nav-link:hover {
+    background-color: #005ac4; /* Голубой фон при наведении */
+    color: white; /* Белый текст при наведении */
+}
+
+/* Основное содержимое */
+main {
+    padding: 20px;
+    background-color: #ffffff; /* Белый фон для основного контента */
+    border-radius: 10px; /* Закругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Тень для карточки */
+}
+
+/* Заголовок */
+h1, h2, h3 {
+    color: #005ac4; /* Темно-серый цвет заголовков */
+    margin-top: 20px;
+}
+
+/* Кнопки */
+button, a.btn {
+    background-color: #007bff; /* Голубой цвет кнопок */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, a.btn:hover {
+    background-color: #0056b3; /* Темно-голубой цвет при наведении */
+}
+
+/* Пагинация */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.page-links a {
+    color: #007bff; /* Голубой цвет ссылок пагинации */
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.page-links a:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.page-current {
+    font-weight: bold;
+}
+
+/* Форматирование для аутентификации */
+.auth-buttons {
+    margin-top: 20px;
+}
+
+.auth-buttons a {
+    margin-right: 10px;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .sidebar {
+        position: static; /* Убираем фиксированную высоту для мобильных */
+        border-right: none;
+    }
+
+    main {
+        margin-top: 20px;
+    }
 }

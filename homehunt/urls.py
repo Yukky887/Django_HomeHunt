@@ -25,7 +25,9 @@ from catalog import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('catalog/', include('catalog.urls')), # переадресация с корневого url на /catalog
+    path("__reload__/", include("django_browser_reload.urls")),  # Маршруты для django-browser-reload
 ]
+
 
 # URLs
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

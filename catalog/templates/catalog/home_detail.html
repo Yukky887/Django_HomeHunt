@@ -16,7 +16,10 @@
   <p>{{ home.city }}, {{ home.street }} {{ home.house_number }}{% if home.apartment_number %}, Apt {{ home.apartment_number }}{% endif %}</p>
 
   <p><strong>Original Listing:</strong>
-    <a href="{{ home.original_address }}" target="_blank">View Source</a>
+      {% if home.original_address %}
+        <a href="{{ home.original_address }}" target="_blank">View Source</a>
+      {% endif %}
+
   </p>
 
   <h3>Images:</h3>
