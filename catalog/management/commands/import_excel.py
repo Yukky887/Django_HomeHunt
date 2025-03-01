@@ -28,7 +28,6 @@ class Command(BaseCommand):
                 url = row[2]  # URL
                 description = row[3]  # Описание
                 views = row[4] if row[4] else 0  # Просмотров (может быть пустым)
-                publication_date = row[5]  # Дата публикации (может быть пустой)
                 seller = row[6]  # Продавец
                 address = row[7] # Адрес (может быть пустым)
 
@@ -39,7 +38,6 @@ class Command(BaseCommand):
                     original_address=url,
                     description=description,
                     views_count=views,
-                    publication_date=publication_date,
                     adrs=address,
                     landlord=None  # Не создаем Landlord
                 )

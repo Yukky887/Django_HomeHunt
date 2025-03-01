@@ -7,22 +7,8 @@
     <a href="{{ home.landlord.get_absolute_url }}">{{ home.landlord.name }}</a>
     (Phone: {{ home.landlord.phone_number }})
   </p>
-  <p><strong>Description:</strong> {{ home.description }}</p>
-  <p><strong>Price:</strong> {{ home.price }}</p>
-  <p><strong>Rooms:</strong> {{ home.quantity }}</p>
-  <p><strong>Views:</strong> {{ home.views_count }}</p>
 
-  <h3>Address:</h3>
-  <p>{{ home.city }}, {{ home.street }} {{ home.house_number }}{% if home.apartment_number %}, Apt {{ home.apartment_number }}{% endif %}</p>
-
-  <p><strong>Original Listing:</strong>
-      {% if home.original_address %}
-        <a href="{{ home.original_address }}" target="_blank">View Source</a>
-      {% endif %}
-
-  </p>
-
-  <h3>Images:</h3>
+    <h3>Images:</h3>
   {% if home.images.all %}
     <div class="row">
       {% for image in home.images.all %}
@@ -34,4 +20,20 @@
   {% else %}
     <p>No images available for this home.</p>
   {% endif %}
+
+  <p><strong>Price:</strong> {{ home.price }} руб.</p>
+  <p><strong>Rooms:</strong> {{ home.quantity }}</p>
+
+      <h3>Address:</h3>
+  <p>{{ home.city }}, {{ home.street }} {{ home.house_number }}{% if home.apartment_number %},Apt {{ home.apartment_number }}{% endif %}</p>
+
+  <p><strong>Description:</strong> {{ home.description }}</p>
+
+    {% if home.original_address %}
+    <p><strong>Для уточнения более детальной информации, вы можете перейти по ссылке:</strong>
+        <a href="{{ home.original_address }}" target="_blank">View Source</a>
+  {% endif %}
+
+    <p><strong>Просмотров:</strong> {{ home.views_count }}</p>
+    <p>Дата добавления: {{ home.publication_date|date:"d E Y H:i" }}</p>
 {% endblock %}

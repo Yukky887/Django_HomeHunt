@@ -8,6 +8,16 @@
 
       {% for home in home_list %}
       <li>
+       {% if home.images.all %}
+         <div class="row">
+             {% for image in home.images.all %}
+                 <div class="col-md-4">
+                     <img src="{{ image.image.url }}" class="img-fluid" alt="Image of {{ home.title }}">
+                 </div>
+             {% endfor %}
+         </div>
+       {% endif %}
+
         <a href="{{ home.get_absolute_url }}">{{ home.title }}</a> ({{home.landlord}})
       </li>
       {% endfor %}

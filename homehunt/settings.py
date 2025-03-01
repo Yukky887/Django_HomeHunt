@@ -78,6 +78,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'homehunt.wsgi.application'
 
+DATETIME_FORMAT = "d E Y H:i"  # Например, "10 февраля 2025 15:30"
+LANGUAGE_CODE = 'ru-ru'
+USE_L10N = True
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

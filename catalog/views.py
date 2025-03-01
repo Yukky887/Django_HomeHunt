@@ -86,7 +86,7 @@ class HomeListView(generic.ListView):
     model = Home
     template_name = 'catalog/home_list.html'  # Укажите путь к шаблону
     context_object_name = 'home_list'  # Имя переменной контекста для шаблона
-    paginate_by = 10  # Опционально: количество элементов на странице
+    paginate_by = 50  # Опционально: количество элементов на странице
 
 class HomeDetailView(generic.DetailView):
     model = Home

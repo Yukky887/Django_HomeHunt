@@ -88,6 +88,14 @@ class Home(models.Model):
     views_count = models.IntegerField(
         default=0
     )
+    publication_date = models.DateTimeField(
+        auto_now_add=True
+    )
+    adrs = models.CharField(
+        max_length=100,
+        help_text="Адрес из объявления",
+        blank=True
+    )
 
     class Meta:
         ordering = ["city", "street", "house_number", "price"]

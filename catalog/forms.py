@@ -22,7 +22,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
-        if CustomUser.objects.filter(email=email).exists():
+        if CustomUser.objects.filter(email=email).exists(): 
             raise forms.ValidationError("Email is already in use.")
         return email
 
